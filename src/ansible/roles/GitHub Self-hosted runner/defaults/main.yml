@@ -1,0 +1,7 @@
+unnatended: false
+
+token: AORNZZPYCNHIOGDD3A4TI4LETLFEI
+
+github_url: https://github.com/MetaBotAI
+
+runner_name: "{{ansible_distribution | lower}}/{{ansible_distribution_version}}"

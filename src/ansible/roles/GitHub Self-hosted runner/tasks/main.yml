@@ -15,15 +15,24 @@
   ansible.builtin.unarchive:
     src: "{{home}}/actions-runner/{{file_name}}"
     dest: "{{home}}/actions-runner/"
+    keep_newer: true
     remote_src: yes
 
-- debug:
-    msg: "TODO! This need to be made automated. Currently `config.sh` requires manual input!"
 
 # Configure
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: unattended.sh.j2
+    dest: "{{home}}/actions-runner/unattended.sh"
+    mode: '0744'
+
+- debug:
+    msg: "Uses unattended setup by default. Set `unnatended: false` if you need to make changes!"
+
 - name: Create the runner and start the configuration experience
-  # ansible.builtin.shell: "./config.sh --url https://github.com/MetaBotAI --token {{token}}"
-  ansible.builtin.shell: "echo './config.sh --url https://github.com/MetaBotAI --token {{token}}' >run.sh ; chmod +x run.sh"
+  ansible.builtin.shell: "./unattended.sh"
   args:
     chdir: "{{home}}/actions-runner"
-    creates: run.sh
+    creates: my.sh
+  when: unattended
+  become: true
