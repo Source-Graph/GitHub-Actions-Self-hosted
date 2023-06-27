@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
 
   # Only NFS ver. 4 works!
   # config.vm.synced_folder ".", "/vagrant",
-  config.vm.synced_folder "../../src", "/home/ubuntu/src",
+  config.vm.synced_folder "../../src", "/vagrant",
     type: "nfs",
     nfs_version: 4,
     nfs_udp: false
@@ -68,8 +68,8 @@ Vagrant.configure("2") do |config|
   # end
 
   # Ansible
-  # config.vm.provision "ansible" do |ansible|
-  #   ansible.verbose = "v"
-  #   ansible.playbook = "playbook.yml"
-  # end
+  config.vm.provision "ansible" do |ansible|
+    ansible.verbose = "v"
+    ansible.playbook = "playbook.yml"
+  end
 end
