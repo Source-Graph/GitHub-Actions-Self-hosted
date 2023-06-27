@@ -7,5 +7,9 @@
       ansible.builtin.apt:
         pkg:
           - htop
-          # - p7zip-full
       become: true
+
+- name: Install GitHub Self-hosted Runner! 
+  ansible.builtin.import_playbook: /vagrant/src/ansible/uni.yml
+  # vars:
+  #   ansible_user: vagrant
