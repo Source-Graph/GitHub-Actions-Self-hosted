@@ -1,7 +1,7 @@
-unnatended: false
+unattended: true
 
-token: AORNZZPYCNHIOGDD3A4TI4LETLFEI
+token: AORNZZOCENIUMIQJV55NESTETLOHY
 
-github_url: https://github.com/MetaBotAI
+runner_url: https://github.com/MetaBotAI
 
-runner_name: "{{ansible_distribution | lower}}/{{ansible_distribution_version}}"
+runner_name: "{{ansible_distribution | lower}}{{ansible_distribution_version | replace('.','')}}"
