@@ -1,3 +1,6 @@
+# example from: https://github.com/organizations/unicorn-os/settings/actions/runners/new
+
+# Download
 - name: Make Directory
   ansible.builtin.file:
     path: "{{home}}/actions-runner"
@@ -13,3 +16,14 @@
     src: "{{home}}/actions-runner/{{file_name}}"
     dest: "{{home}}/actions-runner/"
     remote_src: yes
+
+- debug:
+    msg: "TODO! This need to be made automated. Currently `config.sh` requires manual input!"
+
+# Configure
+- name: Create the runner and start the configuration experience
+  # ansible.builtin.shell: "./config.sh --url https://github.com/MetaBotAI --token {{token}}"
+  ansible.builtin.shell: "echo './config.sh --url https://github.com/MetaBotAI --token {{token}}' >run.sh ; chmod +x run.sh"
+  args:
+    chdir: "{{home}}/actions-runner"
+    creates: run.sh
