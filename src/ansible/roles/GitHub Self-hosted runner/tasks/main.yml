@@ -1,5 +1,11 @@
 # example from: https://github.com/organizations/unicorn-os/settings/actions/runners/new
 
+- name: Screen for persisting ./run.sh session!
+  ansible.builtin.apt:
+    pkg:
+    - screen
+  become: true
+
 # Download
 - name: Make Directory
   ansible.builtin.file:
@@ -33,8 +39,9 @@
   ansible.builtin.shell: "./unattended.sh"
   args:
     chdir: "{{home}}/actions-runner"
-    creates: my.sh
-  when: unattended
+    creates: _diag
+  when: unattended #and false
+  #// Debug: Quick disable
   become: true
 
 - debug:
