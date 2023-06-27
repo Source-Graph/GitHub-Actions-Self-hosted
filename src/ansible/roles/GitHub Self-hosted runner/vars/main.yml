@@ -1,0 +1,6 @@
+# This changes all the time! Use python Selenium & beautifulsoup to retrieve it from browser!
+
+latest_url: https://github.com/actions/runner/releases/download/v2.305.0/actions-runner-linux-x64-2.305.0.tar.gz
+file_name: actions-runner-linux-x64.tar.gz
+
+home: "{{ lookup('ansible.builtin.env', 'HOME' }}"

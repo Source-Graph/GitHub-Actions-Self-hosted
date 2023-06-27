@@ -1,0 +1,15 @@
+- name: Make Directory
+  ansible.builtin.file:
+    path: "{{home}}/actions-runner"
+    state: directory
+
+- name: Download
+  ansible.builtin.get_url:
+    url: "{{latest_url}}"
+    dest: "{{home}}/actions-runner/{{file_name}}"
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: "{{home}}/actions-runner/{{file_name}}"
+    dest: "{{home}}/actions-runner/"
+    remote_src: yes
